@@ -1,9 +1,11 @@
 /** @param {NS} ns */
 export async function main(ns) {
+
+
+  // Work in progress, this does nothing at the moment.
+
     var fees = 100000
     var stocks = ns.getSymbols()
-    
-    
     
     while (true) {
     

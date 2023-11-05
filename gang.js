@@ -1,7 +1,6 @@
 /** @param {NS} ns */
 export async function main(ns) {
     // members
-    let members = ns.gang.getMemberNames()
     let equipment = ns.gang.getEquipmentNames()
     let rootkits = equipment.filter(tool => ns.gang.getEquipmentType(tool) == "Rootkit")
     let augmentations = equipment.filter(tool => ns.gang.getEquipmentType(tool) == "Augmentation")
@@ -12,6 +11,8 @@ export async function main(ns) {
     //}
   
     while (true) {
+      let members = ns.gang.getMemberNames()
+      
       // recruit new members
       if (ns.gang.canRecruitMember()) {
         let lastMember = members.length
@@ -31,10 +32,11 @@ export async function main(ns) {
         }
   
         // ascend
-        if (ns.gang.getAscensionResult(member).hack > 1.5) {
-          ns.gang.setMemberTask(member, "Train Hacking");
-          ns.gang.ascendMember(member)
-        }
+          if (ns.gang.getAscensionResult(member)?.hack > 1.5) { // somestimes comes as undefined ??
+            ns.gang.setMemberTask(member, "Train Hacking");
+            ns.gang.ascendMember(member)
+          }
+
   
         // upgrade equipment
         for (let i = 0; i < rootkits.length; i++) {

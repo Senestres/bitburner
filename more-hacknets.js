@@ -1,6 +1,7 @@
 /** @param {NS} ns */
 export async function main(ns) {
-    while (ns.hacknet.numNodes() < 25) {
+  var maxHacknets = 25
+    while (ns.hacknet.numNodes() < maxHacknets) {
       var money = ns.getServerMoneyAvailable("home")
       var moneyTresh = money * 0.004
       if (ns.hacknet.getPurchaseNodeCost() < moneyTresh) {
@@ -23,4 +24,5 @@ export async function main(ns) {
       }
       await ns.sleep(1000);
     }
+    ns.tprint(`Bought ${maxHacknets} hacknets.`)
   }
